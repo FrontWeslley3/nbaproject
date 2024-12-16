@@ -1,0 +1,253 @@
+:root {
+    --primary-color: #8a4c1d;
+    --secondary-color: #E31837;
+    --background-dark: #0E1118;
+    --text-light: #f5f5f5;
+    --accent-color: #e05a00d8;
+    --hover-color: #1b21d2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--background-dark), #c07d0a);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px; /* Added padding for small screens */
+}
+
+.search-section {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 20px;
+
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.search-section > * {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px 0; /* Added margin for better spacing on small screens */
+}
+
+.search-section > *:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-section input {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #ccc;
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Maximum width */
+}
+
+.search-section input:focus {
+    border-color: #6b119c;
+    box-shadow: 0 0 5px #6b119c;
+    outline: none;
+}
+
+#searchTeams, #conferenceFilter {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid var(--accent-color);
+    background: rgba(20, 20, 30, 0.85);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Maximum width */
+}
+
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.team-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(162, 104, 17, 0.551));
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.team-logo {
+    height: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.4s ease;
+}
+
+.team-card:hover {
+    transform: scale(1.05) rotate(3deg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.team-info {
+    padding: 15px;
+    text-align: center;
+    background: rgba(20,20,30,0.8);
+}
+
+.team-info h3 {
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.team-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(0, 0, 0, 0.532);
+    border-radius: 15px;
+    width: 90%; /* Increased width for small screens */
+    max-width: 600px;
+    padding: 20px; /* Reduced padding */
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 20px 50px rgba(161, 2, 2, 0.5);
+}
+
+.team-details.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.team-details-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.team-details-content {
+    display: flex;
+    flex-direction: column; /* Stack vertically on small screens */
+    align-items: center;
+    gap: 20px;
+}
+
+.team-details-logo {
+    width: 150px; /* Reduced size for small screens */
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.team-details-info {
+    text-align: center; /* Center text when stacked */
+    width: 100%;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .teams-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Slightly smaller cards */
+    }
+
+    .team-logo {
+        height: 200px; /* Reduced height */
+    }
+
+    .team-details {
+        width: 95%; /* Almost full width on very small screens */
+        padding: 15px;
+    }
+
+    .team-details-content {
+        flex-direction: column;
+    }
+
+    .search-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #searchTeams, #conferenceFilter {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Existing Team Logo Classes remain unchanged */
+.warriors { background-image: url('./img/golden.jpeg'); }
+.lakers { background-image: url('./img/lakers.jpeg'); }
+.clippers { background-image: url('./img/clip.jpeg'); }
+.suns { background-image: url('./img/pho.jpeg'); }
+.kings { background-image: url('./img/sacra.jpeg'); }
+.mavericks { background-image: url('./img/mavs.jpeg'); }
+.rockets { background-image: url('./img/hous.jpeg'); }
+.grizzlies { background-image: url('./img/griz.jpeg'); }
+.pelicans { background-image: url('./img/nola.jpeg'); }
+.spurs { background-image: url('./img/spurs.jpeg'); }
+.thunder { background-image: url('./img/thunder.jpeg'); }
+.timberwolves { background-image: url('./img/mine.jpeg'); }
+.trail-blazers { background-image: url('./img/portland.jpeg'); }
+.jazz { background-image: url('./img/jazz.jpeg'); }
+
+.celtics { background-image: url('./img/boston.jpeg'); }
+.nets { background-image: url('./img/nets.jpeg'); }
+.knicks { background-image: url('./img/new.jpeg'); }
+.sixers { background-image: url('./img/phila.jpeg'); }
+.heat { background-image: url('./img/miami.jpeg'); }
+.bulls { background-image: url('./img/bulls.jpeg'); }
+.bucks { background-image: url('./img/bucks.jpeg'); }
+.cavaliers { background-image: url('./img/cavs.jpeg'); }
+.pacers { background-image: url('./img/indiana.jpeg'); }
+.pistons { background-image: url('./img/pistons.jpeg'); }
+.raptors { background-image: url('./img/rap.jpeg'); }
+.hawks { background-image: url('./img/atlanta.jpeg'); }
+.hornets { background-image: url('./img/charlotte.jpeg'); }
+.wizards { background-image: url('./img/wizard.jpeg'); }
+.magic { background-image: url('./img/orlando.jpeg'); }

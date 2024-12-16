@@ -1,0 +1,50 @@
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/nba 2k wallpaper.jpeg"/>
+    <title>NBA Stars</title>
+    <link rel="stylesheet" href="jogadores.css">
+</head>
+<body>
+    <div class="background-animate"></div>
+    <div class="container">
+        <h1 class="neon-text">NBA Stars🏀</h1>
+        
+        <div class="filter-section">
+            <input type="text" id="searchPlayers" placeholder="Buscar jogador" class="neon-input">
+            <select id="teamFilter" class="neon-input">
+                <option value="">Todos os Times</option>
+                <!-- Team options will be dynamically populated -->
+            </select>
+        </div>
+
+        <div id="playersGrid" class="players-grid">
+            <!-- Players will be dynamically added here -->
+        </div>
+    </div>
+
+    <div id="playerDetailsOverlay" class="overlay">
+        <div id="playerDetails" class="player-details neon-border">
+            <button id="closeDetails" class="neon-text">&times;</button>
+            <div id="playerDetailsContent">
+                <img id="playerDetailsImage" src="" alt="Jogador" class="neon-image">
+                <div class="player-info">
+                    <h2 id="playerDetailsName" class="neon-text"></h2>
+                    <p id="playerDetailsTeam" class="neon-text"></p>
+                    <p id="playerDetailsPosition" class="neon-text"></p>
+                    <div id="playerDetailsbiography" class="neon-text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="jogadores.js"></script>
+</body>
+</html>
+
+

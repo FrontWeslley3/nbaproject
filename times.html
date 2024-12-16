@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/nba 2k wallpaper.jpeg"/>
+    <title>NBA</title>
+    <link rel="stylesheet" href="times.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-section">
+            <input type="text" id="searchTeams" placeholder="Buscar time...">
+            <select id="conferenceFilter">
+                <option value="">Todas Conferências</option>
+                <option value="Western">Conferência Oeste</option>
+                <option value="Eastern">Conferência Leste</option>
+            </select>
+        </div>
+
+        <div class="teams-grid" id="teamsGrid">
+            <!-- Teams will be dynamically inserted here -->
+        </div>
+
+        <div class="overlay" id="overlay"></div>
+        <div class="team-details" id="teamDetails">
+            <span class="team-details-close" id="closeDetails">&times;</span>
+            <div class="team-details-content">
+                <div class="team-details-logo" id="teamDetailsLogo"></div>
+                <div class="team-details-info">
+                    <h2 id="teamDetailsName"></h2>
+                    <p id="teamDetailsConference"></p>
+                    <p id="teamDetailsDescription"></p>
+                    <h3>Informações Adicionais</h3>
+                    <p id="teamDetailsExtraInfo"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="times.js"></script>
+</body>
+</html>
